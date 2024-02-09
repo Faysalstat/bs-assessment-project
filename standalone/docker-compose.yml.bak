@@ -67,6 +67,7 @@ services:
         ports:
           - "8084:8084"
         depends_on:
+          - zookeeper
           - kafka1
           - mysql
           - redis

@@ -11,7 +11,7 @@ This is a microservice POC developed by using spring boot, Kafka, MySql database
 	4. Now Run the DB using command
 		docker-compose -f .\local-db-docker.yml up -d
 	5. Run the redis Server using command
-		docker-compose -f .\local-db-docker.yml up -d
+		docker-compose -f .\redis-docker-compose.yml up -d
 
 
 ## Usage
