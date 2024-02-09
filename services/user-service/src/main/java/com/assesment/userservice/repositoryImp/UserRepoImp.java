@@ -14,7 +14,7 @@ public class UserRepoImp{
     @Autowired
     private UserDetailsRepo userDetailsRepo;
 
-    public Optional<UserDetails> findById(Long id){
+    public Optional<UserDetails> findById(Integer id){
         log.info("Fetching From Database");
         return userDetailsRepo.findById(id);
     }

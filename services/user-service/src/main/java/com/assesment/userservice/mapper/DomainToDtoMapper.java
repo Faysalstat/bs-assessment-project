@@ -17,4 +17,6 @@ public class DomainToDtoMapper {
         userDetails.setContactNo(userDetailsDTO.getContactNo());
         return userDetails;
     }
+
+
 }

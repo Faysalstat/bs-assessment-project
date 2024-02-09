@@ -4,5 +4,6 @@ public enum UserEventType {
     CREATED,
     UPDATED,
     DELETED,
-    FOUND
+    FOUND,
+    OPERATION_FAILED
 }

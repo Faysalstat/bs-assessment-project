@@ -11,7 +11,7 @@ public interface UserService {
 
     List<UserDetails> getAllUsers();
     UserDetails create(UserDetailsDTO user) throws JsonProcessingException;
-    UserDetails getUserDetailsById(Long id) throws Exception;
-    UserDetails updateUser(UserDetailsDTO user);
-    String deleteUser(Long id);
+    UserDetails getUserDetailsById(Integer id) throws Exception;
+    UserDetails updateUser(UserDetailsDTO user) throws JsonProcessingException;
+    String deleteUser(Integer id);
 }

@@ -6,8 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserEvent {
+public class UserEvent<T> {
     private Integer eventId;
     private UserEventType userEventType;
-    private UserDetails userDetails;
+    private T userDetails;
 }
