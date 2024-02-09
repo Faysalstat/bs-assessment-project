@@ -33,7 +33,34 @@ User Service is a microservice Proof of Concept (POC) developed using Spring Boo
     ```
 
 ## Usage
-Once the installation is complete, the User Service microservice can be deployed and utilized within your application architecture. Ensure to configure any necessary environment variables and integrate the service according to your requirements.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
+#Get all
+GET - http://localhost:8084/api/user/getall
+#Create
+POST - http://localhost:8081/api/user/create
+	request body:
+	{
+	  "firstName": "Rofikul ",
+	  "lastName": "Islam",
+	  "email": "rofikul@example.com",
+	  "contactNo": "+1234567890",
+	  "address": "123 Main Street, City, Country"
+	}
+#update
+PUT - http://localhost:8081/api/user/update
+	request body:
+	{
+    "id": 1,
+    "firstName": "Faysal",
+    "lastName": "Ahmad",
+    "email": "faysal.ahmad@gmail.com",
+    "contactNo": "01751247982",
+    "address": "Rahman Nagar Bogura, Rajhshahi"
+}
+
+#Delete
+DELETE - http://localhost:8081/api/user/delete/1
+
+#GET By ID
+
+GET - http://localhost:8081/api/user/getbyid/1
