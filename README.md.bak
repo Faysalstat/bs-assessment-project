@@ -31,9 +31,15 @@ User Service is a microservice Proof of Concept (POC) developed using Spring Boo
     ```
     docker build -t user-service .
     ```
+10. I was unabled to run the docker image of the application. So you can test it by run it local machine.
 
-## Usage
+## Testing
 
+I was unabled to run the docker image of the application. So you can test it by run it local machine.
+step 1. Run the application from service folder using command:
+	```
+    mvn spring-boot:run
+    ```
 #Get all
 GET - http://localhost:8084/api/user/getall
 #Create

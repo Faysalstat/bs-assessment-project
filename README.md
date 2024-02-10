@@ -70,3 +70,10 @@ DELETE - http://localhost:8081/api/user/delete/1
 #GET By ID
 
 GET - http://localhost:8081/api/user/getbyid/1
+
+#To test The Kafka consumer in CMD run the command
+
+docker exec --interactive --tty kafka1  \
+kafka-console-consumer --bootstrap-server kafka1:9092 \
+                       --user-event \
+                       --from-beginning
