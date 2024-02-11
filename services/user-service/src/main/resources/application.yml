@@ -12,14 +12,15 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
   kafka:
     topic: "user-event"
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka1:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     admin:
       properties:
-        bootstrap-servers: localhost:9092
+        bootstrap-servers: kafka1:9092
