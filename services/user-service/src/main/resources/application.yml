@@ -17,7 +17,7 @@ spring:
       ddl-auto: update
   kafka:
     topic: "user-event"
-    bootstrap-servers: "localhost:9092"
+    bootstrap-servers: localhost:9092
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

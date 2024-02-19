@@ -54,8 +54,6 @@ services:
         container_name: redis
         ports:
           - "6379:6379"
-        expose:
-          - "6379"
         networks:
           - backend-network
     redis-insight:
@@ -64,27 +62,6 @@ services:
         ports:
           - "8001:8001"
         depends_on:
-          - redis
-        networks:
-          - backend-network
-    user-service-app:
-        image: user-service:latest
-        ports:
-          - "8081:8081"
-        environment:
-          SPRING_REDIS_HOST: redis
-          SPRING_REDIS_PORT: 6379
-          SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/social_media_db
-          SPRING_DATASOURCE_USERNAME: root
-          SPRING_DATASOURCE_PASSWORD: root
-          SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka1:19092
-          SPRING_KAFKA_TOPIC: "user-event"
-          SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS: kafka1:19092
-          SPRING_KAFKA_ADMIN_PROPERTIES_BOOTSTRAP_SERVERS: kafka1:19092
-        depends_on:
-          - zookeeper
-          - kafka1
-          - mysql
           - redis
         networks:
           - backend-network

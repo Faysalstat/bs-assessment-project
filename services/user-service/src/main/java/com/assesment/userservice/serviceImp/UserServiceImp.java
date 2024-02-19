@@ -75,13 +75,17 @@ public class UserServiceImp implements UserService {
             userEvent.setEventId(newUserDetails.getId());
             userEvent.setUserEventType(UserEventType.CREATED);
             userEvent.setUserDetails(newUserDetails);
-            userEventProducer.sendUserEvent(userEvent);
+            System.out.println(userEvent.toString());
+            if(newUserDetails.getId() != null){
+                userEventProducer.sendUserEvent(userEvent);
+            }
             redisTemplate.delete("allUserDetails");
             return newUserDetails;
         }catch (Exception e){
             //            Creating Success Event
+            log.error(e.getMessage());
             UserEvent<UserDetailsDTO> userEvent = new UserEvent<UserDetailsDTO>();
-            userEvent.setEventId( null);
+            userEvent.setEventId(0);
             userEvent.setUserEventType(UserEventType.OPERATION_FAILED);
             userEvent.setUserDetails(userDetailsDTO);
             userEventProducer.sendUserEvent(userEvent);

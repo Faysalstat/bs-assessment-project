@@ -10,8 +10,7 @@ services:
               ZOOKEEPER_TICK_TIME: 2000
             ports:
               - 22181:2181
-            networks:
-              - backend-network 
+              
         
     kafka1:
         image: confluentinc/cp-kafka:latest
@@ -22,8 +21,6 @@ services:
         ports:
           - "9092:9092"
           - "29092:29092"
-        networks:
-          - backend-network 
         environment:
           KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
           KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
@@ -46,18 +43,14 @@ services:
           - "3306:3306"
         volumes:
           - mysql_data:/var/lib/mysql
-        networks:
-          - backend-network 
     redis:
         image: redis:latest
         hostname: redis
         container_name: redis
         ports:
           - "6379:6379"
-        expose:
-          - "6379"
         networks:
-          - backend-network
+          - redis-net
     redis-insight:
         image: redislabs/redisinsight:latest
         container_name: my-redis-insight
@@ -66,31 +59,10 @@ services:
         depends_on:
           - redis
         networks:
-          - backend-network
-    user-service-app:
-        image: user-service:latest
-        ports:
-          - "8081:8081"
-        environment:
-          SPRING_REDIS_HOST: redis
-          SPRING_REDIS_PORT: 6379
-          SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/social_media_db
-          SPRING_DATASOURCE_USERNAME: root
-          SPRING_DATASOURCE_PASSWORD: root
-          SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka1:19092
-          SPRING_KAFKA_TOPIC: "user-event"
-          SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS: kafka1:19092
-          SPRING_KAFKA_ADMIN_PROPERTIES_BOOTSTRAP_SERVERS: kafka1:19092
-        depends_on:
-          - zookeeper
-          - kafka1
-          - mysql
-          - redis
-        networks:
-          - backend-network
+          - redis-net
 volumes:
   mysql_data:
     driver: local
 networks:
-  backend-network:
+  redis-net:
     driver: bridge
