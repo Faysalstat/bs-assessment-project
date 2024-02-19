@@ -33,18 +33,24 @@ User Service is a microservice Proof of Concept (POC) developed using Spring Boo
     ```
 10. I was unabled to run the docker image of the application. So you can test it by run it local machine.
 
-## Testing
 
-I was unabled to run the docker image of the application. So you can test it by run it local machine.
-step 1. Run the application from service folder using command:
-	```
-    mvn spring-boot:run
-    ```
-#Get all
+## Application Setup and Testing
+
+If you encounter issues running the Docker image of the application, you can test it on your local machine using the following steps:
+
+### Step 1: Run the Application Locally
+
+Navigate to the service folder and run the application using the following Maven command:
+
+```bash
+mvn spring-boot:run
+```
+# Get all
 GET - http://localhost:8084/api/user/getall
-#Create
+# Create
 POST - http://localhost:8081/api/user/create
 	request body:
+  ```
 	{
 	  "firstName": "Rofikul ",
 	  "lastName": "Islam",
@@ -52,10 +58,12 @@ POST - http://localhost:8081/api/user/create
 	  "contactNo": "+1234567890",
 	  "address": "123 Main Street, City, Country"
 	}
-#update
+ ```
+# Update
 PUT - http://localhost:8081/api/user/update
 	request body:
-	{
+ ```
+{
     "id": 1,
     "firstName": "Faysal",
     "lastName": "Ahmad",
@@ -63,17 +71,18 @@ PUT - http://localhost:8081/api/user/update
     "contactNo": "01751247982",
     "address": "Rahman Nagar Bogura, Rajhshahi"
 }
-
-#Delete
+```
+# Delete
 DELETE - http://localhost:8081/api/user/delete/1
 
-#GET By ID
+# GET By ID
 
 GET - http://localhost:8081/api/user/getbyid/1
 
-#To test The Kafka consumer in CMD run the command
-
+# To Test The Kafka consumer in CMD run the command
+```bash
 docker exec --interactive --tty kafka1  \
 kafka-console-consumer --bootstrap-server kafka1:9092 \
-                       --user-event \
+                       --topic user-event \
                        --from-beginning
+```
