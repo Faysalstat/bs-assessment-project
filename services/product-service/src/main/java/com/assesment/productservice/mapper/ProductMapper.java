@@ -1,7 +1,7 @@
-package com.assesment.orderservice.mapper;
+package com.assesment.productservice.mapper;
 
-import com.assesment.orderservice.dto.ProductDto;
-import com.assesment.orderservice.entity.Product;
+import com.assesment.productservice.dto.ProductDto;
+import com.assesment.productservice.entity.Product;
 import org.springframework.stereotype.Component;
 
 @Component

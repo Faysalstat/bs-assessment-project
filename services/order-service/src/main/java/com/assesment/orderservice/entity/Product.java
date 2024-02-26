@@ -1,10 +1,12 @@
-package com.assesment.productservice.entity;
+package com.assesment.orderservice.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -13,7 +15,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -42,6 +43,8 @@ public class Product {
     @Column(name = "product_category")
     private String productCategory;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     // Constructors, getters, and setters
 }

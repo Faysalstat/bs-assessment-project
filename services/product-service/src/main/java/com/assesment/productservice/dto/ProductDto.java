@@ -1,6 +1,5 @@
-package com.assesment.orderservice.dto;
+package com.assesment.productservice.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
