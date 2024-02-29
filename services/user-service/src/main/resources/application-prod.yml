@@ -1,0 +1,36 @@
+server:
+  port: 8081
+spring:
+  config:
+    activate:
+      on-profile: prod
+  application:
+    name: user-service
+  redis:
+    host: redis
+    port: 6379
+  datasource:
+    url: jdbc:mysql://mysql:3306/social_media_db
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+  kafka:
+    topic: "user-event"
+    bootstrap-servers: kafka1:19092
+    producer:
+      bootstrap-servers: kafka1:19092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    admin:
+      properties:
+        bootstrap-servers: kafka1:19092
+eureka:
+  client:
+    instance:
+      preferIpAddress: true
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka

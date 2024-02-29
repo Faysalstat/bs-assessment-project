@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  keycloak:
+    image: jboss/keycloak
+    ports:
+      - "8055:8055"
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: mysql
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_SCHEMA_UPDATE: update
+    volumes:
+      - ./configs/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml

@@ -65,6 +65,25 @@ services:
           - redis
         networks:
           - backend-network
+    keycloak:
+        image: jboss/keycloak:latest
+        container_name: keycloak
+        ports:
+          - "8055:8055"
+        networks:
+          - backend-network
+        depends_on:
+          - mysql
+        environment:
+          KEYCLOAK_USER: admin
+          KEYCLOAK_PASSWORD: admin
+          DB_VENDOR: mysql
+          DB_ADDR: mysql
+          DB_DATABASE: keycloak
+          DB_USER: root
+          DB_PASSWORD: root
+          DB_SCHEMA_UPDATE: update
+          JDBC_PARAMS: "useSSL=false&rewriteBatchedStatements=true"
 volumes:
   mysql_data:
     driver: local

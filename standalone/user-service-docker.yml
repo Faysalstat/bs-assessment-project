@@ -1,25 +1,23 @@
 version: '3.8'
 
 services:
-
+  discovery-server:
+        image: discovery-server:latest
+        ports:
+          - "8761:8761"
+        networks:
+          - standalone_backend-network
   user-service-app:
         image: user-service:latest
         ports:
           - "8081:8081"
         environment:
-          SPRING_REDIS_HOST: redis
-          SPRING_REDIS_PORT: 6379
-          SPRING_REDIS_DATABASE: 0
-          SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/social_media_db
-          SPRING_DATASOURCE_USERNAME: root
-          SPRING_DATASOURCE_PASSWORD: root
-          SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka1:19092
-          SPRING_KAFKA_TOPIC: "user-event"
-          SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS: kafka1:19092
-          SPRING_KAFKA_ADMIN_PROPERTIES_BOOTSTRAP_SERVERS: kafka1:19092
+          SPRING_PROFILES_ACTIVE: prod
+          EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
+        depends_on:
+          - discovery-server
         networks:
           - standalone_backend-network
-
 networks:
   standalone_backend-network:
     external: true
