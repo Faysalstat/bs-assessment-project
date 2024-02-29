@@ -11,12 +11,10 @@ import org.springframework.cloud.gateway.filter.factory.RequestRateLimiterGatewa
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import reactor.core.publisher.Mono;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableWebFluxSecurity
 public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
