@@ -4,26 +4,47 @@
 User Service is a microservice Proof of Concept (POC) developed using Spring Boot, Kafka, MySQL database, and Redis.
 
 ## Installation Guide
-1. Open up your terminal from the root folder.
-2. Navigate to the Standalone folder using the command `cd standalone`.
-3. Run the Kafka Broker Docker file by executing the command:
+
+Open up your terminal from the root folder.
+
+### Create Docker Image for API-GATEWAY 
+1. Navigate to the api-gateway folder using the command:
     ```
-    docker-compose -f kafka-docker-locale.yml up -d
+    cd service/api-gateway
     ```
-4. Start the database by running:
+3. Build the application using Maven:
     ```
-    docker-compose -f local-db-docker.yml up -d
+    mvn clean install
     ```
-5. Open your preferred database management system and create a database named "social_media_db".
-6. Launch the Redis Server with the command:
+4. Finally, build the Docker image with the following command:
     ```
-    docker-compose -f redis-docker-compose.yml up -d
+    docker build -t api-gateway .
     ```
-7. Navigate to the user-service folder using the command:
+### Create Docker Image for Discovery-Service 
+1. Navigate to the discovery-server folder using the command:
+    ```
+    cd service/discovery-server
+    ```
+3. Build the application using Maven:
+    ```
+    mvn clean install
+    ```
+4. Finally, build the Docker image with the following command:
+    ```
+    docker build -t discovery-service .
+    ```
+### Create Docker Image for User-service 
+
+1. Navigate to the user-service folder using the command:
     ```
     cd service/user-service
     ```
-8. Build the application using Maven:
+
+2. Navigate to the user-service folder using the command:
+    ```
+    cd service/user-service
+    ```
+3. Build the application using Maven:
     ```
     mvn clean install
     ```
@@ -31,20 +52,21 @@ User Service is a microservice Proof of Concept (POC) developed using Spring Boo
     ```
     docker build -t user-service .
     ```
-10. I was unabled to run the docker image of the application. So you can test it by run it local machine.
+### Run All docker
+1. Go back to standalone folder and run the command
+    ```
+    docker-compose -f ./docker-compose-all.yml up -d
+    ```
 
+### Service Details
 
-## Application Setup and Testing
-
-If you encounter issues running the Docker image of the application, you can test it on your local machine using the following steps:
-
-### Step 1: Run the Application Locally
-
-Navigate to the service folder and run the application using the following Maven command:
-
-```bash
-mvn spring-boot:run
+#### API-GATEWAY
 ```
+    port : 8000
+```
+### Test the api from postman
+
+
 # Get all
 GET - http://localhost:8084/api/user/getall
 # Create
